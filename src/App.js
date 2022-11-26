@@ -28,7 +28,7 @@ function App() {
     let newWord = palavras[chooseWord()];
     (newWord === word) ? newWord = palavras[chooseWord()] : setWord(newWord);
     setWordArray(Array.from(newWord));
-    setHiddenWordArray(Array.from(newWord).map((e) => e = "_"));
+    setHiddenWordArray(Array.from(newWord).map((e) => e = " _ "));
 
     function chooseWord(){
       return Math.round(Math.random() * palavras.length -1);

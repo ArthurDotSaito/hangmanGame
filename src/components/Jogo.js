@@ -15,10 +15,15 @@ function Jogo(props){
     return(
         <StyledMainContainer className="gameContainer">
             {renderImage(props.gameData.numberOfError)}
-            <section className="chooseWordContainer">
-                <StyledButton className="chooseWord" data-test="choose-word" onClick={props.gameData.newGame}>Escolher Palavra</StyledButton>
-                <h1 className={props.gameData.classPalavra} data-test="word" data-answer={props.gameData.palavra}>{props.gameData.palavraEscondida}</h1>
-            </section>
+            <StyledRightContainer className="rightContainer">
+                <StyledButton 
+                    className="chooseWord" 
+                    onClick={props.gameData.newGame} 
+                    data-test="choose-word" >Escolher Palavra</StyledButton>
+                <StyledHiddenWord 
+                    className="HiddenWord" 
+                    data-test="word">{props.gameData.hiddenWordArray}</StyledHiddenWord>
+            </StyledRightContainer>
         </StyledMainContainer>
     );  
 }
@@ -28,16 +33,23 @@ const StyledMainContainer = styled.div`
     display: flex;
     margin-top: 60px;
     `
-
 const StyledImageContainer = styled.figure`
     width:50%;
 `
 const StyledImage = styled.img`
     width:50%;
 `
+const StyledRightContainer = styled.section`
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-right: 30px;
+`
 const StyledButton = styled.button`
   padding: 20px;
-  background-color: #27ae60;
+  background-color: #27AE60;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,4 +59,10 @@ const StyledButton = styled.button`
   border-radius: 8px;
   width: 250px;
 `
+const StyledHiddenWord = styled.div`
+    color: black;
+    font-size: 40px;
+
+` 
+
 export default Jogo;
