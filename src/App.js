@@ -37,7 +37,7 @@ function App() {
     gameState,
     inputGuessText,
     setInputGuessText,
-    endGame
+    guessEndGame
   }
 
   function newGame() {
@@ -83,8 +83,21 @@ function App() {
     if(!word.includes(" _ ")){
       setGameStatus("win");
       setGameState(false);
-      setLetters([])
+      setLetters([]);
     }else if(totalError == maxError){
+      setGameStatus("lose");
+      setNumberOfError(maxError);
+      setGameState(false);
+      setLetters([]);
+    }
+  }
+
+  function guessEndGame(){
+    if(inputGuessText === word){
+      setGameStatus("win");
+      setGameState(false);
+      setLetters([]);
+    }else{
       setGameStatus("lose");
       setNumberOfError(maxError);
       setGameState(false);

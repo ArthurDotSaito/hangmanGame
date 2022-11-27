@@ -17,7 +17,7 @@ function Chute(props){
                 type='button'
                 disabled = {!props.guessData.gameState}
                 value = "Chutar"
-                onClick = {props.guessData.endGame}
+                onClick = {props.guessData.guessEndGame}
             >Chutar</StyledGuessButton>
             </StyledGuess>
     )
