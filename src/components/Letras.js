@@ -32,11 +32,15 @@ const StyledLetter =  styled.button`
     height: 40px;
     margin: 7px;
     font-weight: 700;
+    font-size:16px;
+    line-height: 18.75px;
     color: #7AA7C7;
+    border: 1px solid #7AA7C7;
+    border-radius: 3px;
     background-color: #E1ECF4;
     &:disabled{
-        opacity: 0.5;
-        color: #7AA7C8;
+        color: #798A9F;
+        background-color: #9FAAB5;
     }
 `
 export default Letras;

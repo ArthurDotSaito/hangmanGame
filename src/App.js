@@ -54,13 +54,10 @@ function App() {
       return Math.round(Math.random() * palavras.length - 1);
     }
   }
-  console.log(word);
-  console.log(wordArray);
-  console.log(hiddenWordArray);
 
   function haveLetterOnWord(newLetter) {
     setLetters([...letters, newLetter]);
-    let wordNormalized = word.normalize("NFC").replace(/[^a-zA-Z\s]/g, "");
+    let wordNormalized = word.normalize("NFD").replace(/[^a-zA-Z\s]/g, "");
     if (wordNormalized.includes(newLetter)) {
       rightLetters(newLetter);
     }else {
@@ -71,7 +68,7 @@ function App() {
 
     function rightLetters(rightLetter) {
       const right = hiddenWordArray.map(function (element, index) {
-        let rightLetterElement = wordArray[index].normalize("NFC").replace(/[^a-zA-Z\s]/g, "");
+        let rightLetterElement = wordArray[index].normalize("NFD").replace(/[^a-zA-Z\s]/g, "");
         return (rightLetterElement === rightLetter) ? element = wordArray[index] : element})
 
       setHiddenWordArray(right);
@@ -96,7 +93,7 @@ function App() {
   }
 
   function guessEndGame(){
-    if(inputGuessText === word){
+    if(inputGuessText === word.normalize("NFD").replace(/[^a-zA-Z\s]/g, "")){
       setGameStatus("win");
       setGameState(false);
       setLetters([]);
