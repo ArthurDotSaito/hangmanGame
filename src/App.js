@@ -53,7 +53,7 @@ function App() {
     function chooseWord() {
       return Math.round(Math.random() * palavras.length - 1);
     }
-  };
+  }
 
   function haveLetterOnWord(newLetter) {
     setLetters([...letters, newLetter]);
@@ -68,7 +68,7 @@ function App() {
 
     function rightLetters(rightLetter) {
       const right = hiddenWordArray.map(function (element, index) {
-        let rightLetterElement = wordArray[index].normalize("NFD").replace(/[^a-zA-Z\s]/g, "");
+        const rightLetterElement = wordArray[index].normalize("NFD").replace(/[^a-zA-Z\s]/g, "");
         return (rightLetterElement === rightLetter) ? wordArray[index] : element});
 
       setHiddenWordArray(right);
