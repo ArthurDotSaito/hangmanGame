@@ -1,5 +1,6 @@
 import React from 'react';
 import Jogo from "./components/Jogo"
+import Letras from './components/Letras';
 import styled from 'styled-components'
 import palavras from './palavras';
 
@@ -7,7 +8,7 @@ function App() {
   const [gameState, setGameState] = React.useState(false);
   let [word,setWord] = React.useState('');
   let [numberOfError, setNumberOfError] = React.useState(0);
-  const [letters, setLetters] = React.useState([]);
+  let [letters, setLetters] = React.useState([]);
   let [wordArray, setWordArray] = React.useState([]);
   let [hiddenWordArray, setHiddenWordArray] = React.useState([]);
 
@@ -19,6 +20,12 @@ function App() {
     hiddenWordArray,
     letters,
     newGame
+  }
+
+  const letterData = {
+    gameState,
+    letters,
+    haveLetterOnWord
   }
 
   function newGame(){ 
@@ -38,9 +45,23 @@ function App() {
   console.log(wordArray);
   console.log(hiddenWordArray);    
 
+  function haveLetterOnWord(newLetter){
+    setLetters([...letters, newLetter]);
+    let  errors;
+    let wordNormalized = word.normalize("NFC").replace(/[^a-zA-Z\s]/g, "");
+    if(!wordNormalized.includes(newLetter)){
+      errors += 1;
+      console.log(errors);
+      setNumberOfError(errors);
+    }else{
+      console.log("Certo!");
+    }
+  }
+
   return(
     <StyledContainer className="App">
       <Jogo gameData={gameData} />
+      <Letras letterData={letterData} />
     </StyledContainer>
 );
 
