@@ -67,6 +67,7 @@ const StyledButton = styled.button`
   font-size: 20px;
   border-radius: 8px;
   width: 250px;
+  cursor: pointer;
 `
 const StyledHiddenWord = styled.div.attrs(props =>({className: props.className}))`
     &.onGame{

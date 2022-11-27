@@ -53,6 +53,7 @@ const StyledGuessButton = styled.button`
     background-color: #E1ECF4;
     color: #7AA7C7;
     margin-left: 15px;
+    cursor: pointer;
     &:disabled{
         opacity:0.5;
     }

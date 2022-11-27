@@ -38,6 +38,7 @@ const StyledLetter =  styled.button`
     border: 1px solid #7AA7C7;
     border-radius: 3px;
     background-color: #E1ECF4;
+    cursor: pointer;
     &:disabled{
         color: #798A9F;
         background-color: #9FAAB5;
