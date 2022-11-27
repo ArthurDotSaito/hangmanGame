@@ -3,6 +3,7 @@ import Jogo from "./components/Jogo"
 import Letras from './components/Letras';
 import styled from 'styled-components'
 import palavras from './palavras';
+import Chute from './components/Chute';
 
 function App() {
   const [gameState, setGameState] = React.useState(false);
@@ -12,6 +13,8 @@ function App() {
   let [letters, setLetters] = React.useState([]);
   let [wordArray, setWordArray] = React.useState([]);
   let [hiddenWordArray, setHiddenWordArray] = React.useState([]);
+  let [inputGuessText, setInputGuessText] = React.useState("");
+  const maxError = 6;
 
   const gameData = {
     word,
@@ -28,6 +31,13 @@ function App() {
     gameState,
     letters,
     haveLetterOnWord
+  }
+
+  const guessData = {
+    gameState,
+    inputGuessText,
+    setInputGuessText,
+    endGame
   }
 
   function newGame() {
@@ -67,26 +77,26 @@ function App() {
       endGame(right);
     }
   }
-  console.log(numberOfError);
 
   function endGame(word, totalError){
+    console.log(word);
     if(!word.includes(" _ ")){
       setGameStatus("win");
       setGameState(false);
       setLetters([])
-    }else if(totalError == 6){
+    }else if(totalError == maxError){
       setGameStatus("lose");
-      setNumberOfError(6);
+      setNumberOfError(maxError);
       setGameState(false);
       setLetters([]);
     }
   }
 
-
   return (
     <StyledContainer className="App">
       <Jogo gameData={gameData} />
       <Letras letterData={letterData} />
+      <Chute guessData={guessData}/>
     </StyledContainer>
   );
 
