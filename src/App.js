@@ -47,14 +47,12 @@ function App() {
 
   function haveLetterOnWord(newLetter){
     setLetters([...letters, newLetter]);
-    let  errors;
     let wordNormalized = word.normalize("NFC").replace(/[^a-zA-Z\s]/g, "");
-    if(!wordNormalized.includes(newLetter)){
-      errors += 1;
-      console.log(errors);
-      setNumberOfError(errors);
-    }else{
+    if(wordNormalized.includes(newLetter)){
       console.log("Certo!");
+    }else{
+      let sumOfErrors = numberOfError + 1;
+      setNumberOfError(sumOfErrors);
     }
   }
 

@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 function Jogo(props){
 
-    const renderImage = (number) =>(
+    const renderImage = (ErrorNumber) =>(
         <StyledImageContainer className = "imageContainer">
             <StyledImage 
-                src={require(`./assets/forca${number}.png`)} 
+                src={require(`./assets/forca${ErrorNumber}.png`)} 
                 data-test = "game-image"
             />
         </StyledImageContainer>

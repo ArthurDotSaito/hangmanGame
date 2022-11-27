@@ -6,7 +6,7 @@ function Letras(props){
     const letter = alfabeto.map((l) => (
         <StyledLetter
         type="button"
-        disabled={(!props.letterData.gameState) ? !props.letterData.letters.includes(l):props.letterData.letters.includes(l)}
+        disabled={(!props.letterData.gameState) ? !props.letterData.letters.includes(l) : props.letterData.letters.includes(l)}
         onClick = {({target}) => {
             props.letterData.haveLetterOnWord(l);
             target.disabled = true;
@@ -39,5 +39,4 @@ const StyledLetter =  styled.button`
         color: #7AA7C8;
     }
 `
-
 export default Letras;
