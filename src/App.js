@@ -6,7 +6,7 @@ import palavras from './palavras';
 
 function App() {
   const [gameState, setGameState] = React.useState(false);
-  let [word,setWord] = React.useState('');
+  let [word, setWord] = React.useState('');
   let [numberOfError, setNumberOfError] = React.useState(0);
   let [letters, setLetters] = React.useState([]);
   let [wordArray, setWordArray] = React.useState([]);
@@ -28,7 +28,7 @@ function App() {
     haveLetterOnWord
   }
 
-  function newGame(){ 
+  function newGame() {
     setGameState(true);
     setNumberOfError(0);
     setLetters([]);
@@ -37,31 +37,41 @@ function App() {
     setWordArray(Array.from(newWord));
     setHiddenWordArray(Array.from(newWord).map((e) => e = " _ "));
 
-    function chooseWord(){
-      return Math.round(Math.random() * palavras.length -1);
+    function chooseWord() {
+      return Math.round(Math.random() * palavras.length - 1);
     }
   }
   console.log(word);
   console.log(wordArray);
-  console.log(hiddenWordArray);    
+  console.log(hiddenWordArray);
 
-  function haveLetterOnWord(newLetter){
+  function haveLetterOnWord(newLetter) {
     setLetters([...letters, newLetter]);
     let wordNormalized = word.normalize("NFC").replace(/[^a-zA-Z\s]/g, "");
-    if(wordNormalized.includes(newLetter)){
-      console.log("Certo!");
-    }else{
+    if (wordNormalized.includes(newLetter)) {
+      rightLetters(newLetter);
+    }else {
       let sumOfErrors = numberOfError + 1;
       setNumberOfError(sumOfErrors);
     }
+
+    function rightLetters(rightLetter) {
+      const right = hiddenWordArray.map(function (element, index) {
+        let rightLetterElement = wordArray[index].normalize("NFC").replace(/[^a-zA-Z\s]/g, "");
+        return (rightLetterElement === rightLetter) ? element = wordArray[index] : element})
+
+      setHiddenWordArray(right);
+
+    }
   }
 
-  return(
+
+  return (
     <StyledContainer className="App">
       <Jogo gameData={gameData} />
       <Letras letterData={letterData} />
     </StyledContainer>
-);
+  );
 
 }
 
