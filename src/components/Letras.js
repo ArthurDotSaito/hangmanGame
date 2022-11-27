@@ -10,8 +10,8 @@ function Letras(props){
         onClick = {({target}) => {
             props.letterData.haveLetterOnWord(l);
             target.disabled = true;
-            }}>
-            {l.toUpperCase()}
+            }}
+        data-test="letter">{l.toUpperCase()}
         </StyledLetter>
     ))
 

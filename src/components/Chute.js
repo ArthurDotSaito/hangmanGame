@@ -11,13 +11,14 @@ function Chute(props){
                 value = {props.guessData.inputGuessText}
                 placeholder = "Chuta aí!"
                 onChange = {(event) => props.guessData.setInputGuessText(event.target.value)}
-                data-test = "guess-button"
+                data-test = "guess-input"
             ></StyledInputGuess>
             <StyledGuessButton
                 type='button'
                 disabled = {!props.guessData.gameState}
                 value = "Chutar"
                 onClick = {props.guessData.guessEndGame}
+                data-test = "guess-button"
             >Chutar</StyledGuessButton>
             </StyledGuess>
     )

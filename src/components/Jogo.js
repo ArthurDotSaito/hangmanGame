@@ -1,4 +1,3 @@
-import palavras from "../palavras";
 import styled from "styled-components";
 
 function Jogo(props){
@@ -15,7 +14,8 @@ function Jogo(props){
     const renderSpaces = (className) => (
         <StyledHiddenWord 
             className= {className} 
-            data-test="word">{
+            data-test="word"
+            data-answer={props.gameData.word}>{
                 (props.gameData.gameStatus === 'lose'||props.gameData.gameStatus === 'win') ? 
                 props.gameData.word 
                 :props.gameData.hiddenWordArray}
