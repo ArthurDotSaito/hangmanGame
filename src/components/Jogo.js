@@ -12,11 +12,14 @@ function Jogo(props){
         </StyledImageContainer>
     )
     
-    console.log(props.gameData.gameStatus)
     const renderSpaces = (className) => (
         <StyledHiddenWord 
             className= {className} 
-            data-test="word">{props.gameData.hiddenWordArray}</StyledHiddenWord> 
+            data-test="word">{
+                (props.gameData.gameStatus === 'lose'||props.gameData.gameStatus === 'win') ? 
+                props.gameData.word 
+                :props.gameData.hiddenWordArray}
+                </StyledHiddenWord> 
     )
     
     return(
@@ -65,7 +68,6 @@ const StyledButton = styled.button`
   border-radius: 8px;
   width: 250px;
 `
-
 const StyledHiddenWord = styled.div.attrs(props =>({className: props.className}))`
     &.onGame{
         font-size:40px;
@@ -81,5 +83,4 @@ const StyledHiddenWord = styled.div.attrs(props =>({className: props.className})
     }
 
 ` 
-
 export default Jogo;

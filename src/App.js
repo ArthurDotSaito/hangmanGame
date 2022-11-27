@@ -1,9 +1,9 @@
 import React from 'react';
 import Jogo from "./components/Jogo"
 import Letras from './components/Letras';
-import styled from 'styled-components'
-import palavras from './palavras';
 import Chute from './components/Chute';
+import palavras from './palavras';
+import styled from 'styled-components'
 
 function App() {
   const [gameState, setGameState] = React.useState(false);
@@ -44,8 +44,9 @@ function App() {
     setGameState(true);
     setNumberOfError(0);
     setLetters([]);
+    setGameStatus("onGame");
     let newWord = palavras[chooseWord()];
-    (newWord === word) ? newWord = palavras[chooseWord()] : setWord(newWord);
+    setWord(newWord);
     setWordArray(Array.from(newWord));
     setHiddenWordArray(Array.from(newWord).map((e) => e = " _ "));
 
@@ -83,11 +84,13 @@ function App() {
     if(!word.includes(" _ ")){
       setGameStatus("win");
       setGameState(false);
+      setHiddenWordArray(word);
       setLetters([]);
     }else if(totalError == maxError){
       setGameStatus("lose");
       setNumberOfError(maxError);
       setGameState(false);
+      setHiddenWordArray(word);
       setLetters([]);
     }
   }
