@@ -1,19 +1,19 @@
 import React from 'react';
-import Jogo from "./components/Jogo"
+import Jogo from "./components/Jogo";
 import Letras from './components/Letras';
 import Chute from './components/Chute';
 import palavras from './palavras';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 function App() {
   const [gameState, setGameState] = React.useState(false);
-  const [gameStatus, setGameStatus] = React.useState("onGame")
-  let [word, setWord] = React.useState('');
-  let [numberOfError, setNumberOfError] = React.useState(0);
-  let [letters, setLetters] = React.useState([]);
-  let [wordArray, setWordArray] = React.useState([]);
-  let [hiddenWordArray, setHiddenWordArray] = React.useState([]);
-  let [inputGuessText, setInputGuessText] = React.useState("");
+  const [gameStatus, setGameStatus] = React.useState("onGame");
+  const [word, setWord] = React.useState('');
+  const [numberOfError, setNumberOfError] = React.useState(0);
+  const [letters, setLetters] = React.useState([]);
+  const [wordArray, setWordArray] = React.useState([]);
+  const [hiddenWordArray, setHiddenWordArray] = React.useState([]);
+  const [inputGuessText, setInputGuessText] = React.useState("");
   const maxError = 6;
 
   const gameData = {
@@ -25,51 +25,51 @@ function App() {
     letters,
     gameStatus,
     newGame
-  }
+  };
 
   const letterData = {
     gameState,
     letters,
     haveLetterOnWord
-  }
+  };
 
   const guessData = {
     gameState,
     inputGuessText,
     setInputGuessText,
     guessEndGame
-  }
+  };
 
   function newGame() {
     setGameState(true);
     setNumberOfError(0);
     setLetters([]);
     setGameStatus("onGame");
-    let newWord = palavras[chooseWord()];
+    const newWord = palavras[chooseWord()];
     setWord(newWord);
     setWordArray(Array.from(newWord));
-    setHiddenWordArray(Array.from(newWord).map((e) => e = " _ "));
+    setHiddenWordArray(Array.from(newWord).map(() =>  " _ "));
 
     function chooseWord() {
       return Math.round(Math.random() * palavras.length - 1);
     }
-  }
+  };
 
   function haveLetterOnWord(newLetter) {
     setLetters([...letters, newLetter]);
-    let wordNormalized = word.normalize("NFD").replace(/[^a-zA-Z\s]/g, "");
+    const wordNormalized = word.normalize("NFD").replace(/[^a-zA-Z\s]/g, "");
     if (wordNormalized.includes(newLetter)) {
       rightLetters(newLetter);
     }else {
-      let sumOfErrors = numberOfError + 1;
+      const sumOfErrors = numberOfError + 1;
       setNumberOfError(sumOfErrors);
-      endGame(hiddenWordArray, sumOfErrors)
+      endGame(hiddenWordArray, sumOfErrors);
     }
 
     function rightLetters(rightLetter) {
       const right = hiddenWordArray.map(function (element, index) {
         let rightLetterElement = wordArray[index].normalize("NFD").replace(/[^a-zA-Z\s]/g, "");
-        return (rightLetterElement === rightLetter) ? element = wordArray[index] : element})
+        return (rightLetterElement === rightLetter) ? wordArray[index] : element});
 
       setHiddenWordArray(right);
       endGame(right);
@@ -83,7 +83,7 @@ function App() {
       setGameState(false);
       setHiddenWordArray(word);
       setLetters([]);
-    }else if(totalError == maxError){
+    }else if(totalError === maxError){
       setGameStatus("lose");
       setNumberOfError(maxError);
       setGameState(false);
