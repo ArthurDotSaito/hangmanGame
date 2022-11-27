@@ -97,11 +97,13 @@ function App() {
       setGameStatus("win");
       setGameState(false);
       setLetters([]);
+      setInputGuessText([])
     }else{
       setGameStatus("lose");
       setNumberOfError(maxError);
       setGameState(false);
       setLetters([]);
+      setInputGuessText([])
     }
   }
 
