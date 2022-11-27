@@ -6,6 +6,7 @@ import palavras from './palavras';
 
 function App() {
   const [gameState, setGameState] = React.useState(false);
+  const [gameStatus, setGameStatus] = React.useState("onGame")
   let [word, setWord] = React.useState('');
   let [numberOfError, setNumberOfError] = React.useState(0);
   let [letters, setLetters] = React.useState([]);
@@ -19,6 +20,7 @@ function App() {
     wordArray,
     hiddenWordArray,
     letters,
+    gameStatus,
     newGame
   }
 
@@ -53,6 +55,7 @@ function App() {
     }else {
       let sumOfErrors = numberOfError + 1;
       setNumberOfError(sumOfErrors);
+      endGame(hiddenWordArray, sumOfErrors)
     }
 
     function rightLetters(rightLetter) {
@@ -61,7 +64,21 @@ function App() {
         return (rightLetterElement === rightLetter) ? element = wordArray[index] : element})
 
       setHiddenWordArray(right);
+      endGame(right);
+    }
+  }
+  console.log(numberOfError);
 
+  function endGame(word, totalError){
+    if(!word.includes(" _ ")){
+      setGameStatus("win");
+      setGameState(false);
+      setLetters([])
+    }else if(totalError == 6){
+      setGameStatus("lose");
+      setNumberOfError(6);
+      setGameState(false);
+      setLetters([]);
     }
   }
 

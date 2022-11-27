@@ -11,7 +11,14 @@ function Jogo(props){
             />
         </StyledImageContainer>
     )
-
+    
+    console.log(props.gameData.gameStatus)
+    const renderSpaces = (className) => (
+        <StyledHiddenWord 
+            className= {className} 
+            data-test="word">{props.gameData.hiddenWordArray}</StyledHiddenWord> 
+    )
+    
     return(
         <StyledMainContainer className="gameContainer">
             {renderImage(props.gameData.numberOfError)}
@@ -20,12 +27,11 @@ function Jogo(props){
                     className="chooseWord" 
                     onClick={props.gameData.newGame} 
                     data-test="choose-word" >Escolher Palavra</StyledButton>
-                <StyledHiddenWord 
-                    className="HiddenWord" 
-                    data-test="word">{props.gameData.hiddenWordArray}</StyledHiddenWord>
+                {renderSpaces(props.gameData.gameStatus)}
             </StyledRightContainer>
         </StyledMainContainer>
     );  
+
 }
 
 const StyledMainContainer = styled.div`
@@ -59,9 +65,20 @@ const StyledButton = styled.button`
   border-radius: 8px;
   width: 250px;
 `
-const StyledHiddenWord = styled.div`
-    color: black;
-    font-size: 40px;
+
+const StyledHiddenWord = styled.div.attrs(props =>({className: props.className}))`
+    &.onGame{
+        font-size:40px;
+        color:#000000;
+    }
+    &.lose{
+        font-size:40px;
+        color:#FF0000;
+    } 
+    &.win{
+        font-size:40px;
+        color:#27AE60;
+    }
 
 ` 
 
